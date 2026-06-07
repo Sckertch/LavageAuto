@@ -3,11 +3,17 @@
 @import './view/HomeVue.css';
 
 @theme {
+  /*BREAKPOINT*/
+  --breakpoint-xs: 320px;
+  --breakpoint-bxsm: 420px;
+
+  /*COULEURS*/
   --color-white: #fff;
   --color-smart-blue: #4464ad;
   --color-frozen-water: #00c8a7;
   --color-neon-ice: #69FFF1; 
 
+  /*FONT*/
   --font-playfair: 'Playfair Display', serif;
   --font-montserrat: 'Montserrat', sans-serif;
   --font-cormorant: 'Cormorant Garamond', serif;
