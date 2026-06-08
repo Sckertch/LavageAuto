@@ -1,7 +1,0 @@
-nav {
-  ul {
-    li {
-      @apply transition-transform duration-200 hover:-translate-y-2;
-    }
-  }
-}
