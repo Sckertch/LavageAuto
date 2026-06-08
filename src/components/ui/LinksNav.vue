@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li
-      v-for="link in navLinks"
+      v-for="link in navLinks" 
       :key="link.name"
       class="transition-transform duration-200 hover:-translate-y-2"
     >
@@ -18,6 +18,7 @@ const navLinks = [
   { name: 'Prestations', path: '/' },
   { name: 'Produits', path: '/' },
   { name: 'Devis', path: '/' },
-]</script>
+]
+</script>
 
 <style lang="scss" scoped></style>

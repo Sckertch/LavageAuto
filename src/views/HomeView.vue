@@ -67,7 +67,6 @@ import BaseButton from '@/components/ui/BaseButton.vue'
       </div>
     </div>
 
-    <!-- Trait décoratif bas -->
     <div
       class="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-neon-ice to-transparent opacity-30"
     ></div>
