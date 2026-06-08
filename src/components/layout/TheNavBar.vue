@@ -1,24 +1,57 @@
 <script setup>
-const navLinks = [
-  { name: 'Accueil', path: '/' },
-  { name: 'Prestations', path: '/' },
-  { name: 'Produits', path: '/' },
-  { name: 'Devis', path: '/' },
-]
+import { ref } from 'vue'
+import LinksNav from '../ui/LinksNav.vue';
+
+let isOpen = ref(false)
+
+
 </script>
 
 <template>
-  <nav class="bg-smart-blue shadow-2xl px-6 py-3 flex items-center justify-between">
+  <nav class="bg-smart-blue shadow-2xl px-6 py-3 grid grid-cols-4 items-center">
     <a href="#">
       <img src="https://picsum.photos/100/50" alt="Logo du site" />
     </a>
-    <ul class="flex gap-6 list-none text-white">
-      <li v-for="link in navLinks" :key="link.name" class="transition-transform duration-200 hover:-translate-y-2">
-        <a :href="link.path">
-          {{ link.name }}
-        </a>
-      </li>
-    </ul>
+          <button
+      @click="isOpen = !isOpen, console.log(isOpen)"
+      class="flex flex-row-reverse col-start-4 md:hidden text-gray-600 focus:outline-none"
+      aria-label="Toggle menu"
+    >
+      <!-- Icône burger SVG -->
+      <svg
+        v-if="!isOpen"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+      <!-- Icône croix (fermeture) -->
+      <svg
+        v-else
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+
+    <LinksNav v-show="isOpen" class="md:hidden col-span-4 flex flex-col items-center gap-5 text-white"/>
+    <LinksNav class="hidden md:flex col-span-3 justify-end gap-6 list-none text-white"/>
+    
   </nav>
 </template>
 
