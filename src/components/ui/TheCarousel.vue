@@ -8,11 +8,11 @@
       <div
         v-for="(item, i) in [...items, ...items]"
         :key="i"
-        class="flex-shrink-0 w-64 h-40 rounded-xl bg-white shadow-md flex items-center justify-center"
+        class="flex-shrink-0 w-64 h-40 rounded-xl bg-white shadow-md flex items-center justify-center transition-transform duration-200 hover:scale-110"
       >
           <img
-    :src="'https://picsum.photos/seed/' + i + '/256/160'"
-    :alt="'Image ' + i"
+    :src="`http://clean-palm-image:8081/picture/${item}.webp`"
+    :alt="`http://clean-palm-image:8081/picture/${item}.webp`"
     class="rounded-xl object-cover w-full h-full"
   >
       </div>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-const items = ['Card 1', 'Card 2', 'Card 3', 'Card 4', 'Card 5']
+const items = ['produit1', 'produit2', 'produit3', 'produit4', 'produit5']
 const duration = 20 // secondes pour un tour complet
 </script>
 

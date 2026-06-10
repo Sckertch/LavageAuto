@@ -57,8 +57,12 @@
       </div>
     </div>
   </div>
+  <PrestationItem />  <PrestationItem />  <PrestationItem />
 </template>
 
-<script setup></script>
+<script setup>
+import PrestationItem from './ThePrestation/PrestationItem.vue';
+
+</script>
 
 <style lang="scss" scoped></style>
