@@ -10,7 +10,7 @@ let isOpen = ref(false)
 <template>
   <nav class="bg-smart-blue shadow-2xl px-6 py-3 grid grid-cols-4 items-center">
     <a href="#">
-      <img src="https://picsum.photos/100/50" alt="Logo du site" />
+      <img src="../../assets/picture/logo.jpeg" alt="Logo du site" class="h-full  max-h-8"/>
     </a>
           <button
       @click="isOpen = !isOpen, console.log(isOpen)"

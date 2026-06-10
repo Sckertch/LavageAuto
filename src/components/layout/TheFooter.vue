@@ -40,7 +40,7 @@
 
       <!-- Logo aligné à droite sur les 2 dernières colonnes -->
       <div class="flex justify-end items-start col-span-2">
-        <img src="https://picsum.photos/100/50" alt="Logo du site" class="rounded-md opacity-90" />
+        <img src="../../assets/picture/logo.jpeg" alt="Logo du site" class="rounded-md opacity-90 h-full max-h-30" />
       </div>
 
     </div>
