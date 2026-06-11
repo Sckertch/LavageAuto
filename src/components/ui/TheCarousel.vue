@@ -8,7 +8,7 @@
       <div
         v-for="(item, i) in [...items, ...items]"
         :key="i"
-        class="flex-shrink-0 w-64 h-40 rounded-xl bg-white shadow-md flex items-center justify-center transition-transform duration-200 hover:scale-110"
+        class="w-64 h-40 rounded-xl bg-white shadow-md flex items-center justify-center transition-transform duration-200 hover:scale-110"
       >
           <img
     :src="`http://clean-palm-image:8081/picture/${item}.webp`"

@@ -9,16 +9,16 @@
   --color-white: #fff;
   --color-smart-blue: #4464ad;
   --color-frozen-water: #00c8a7;
-  --color-neon-ice: #69FFF1; 
+  --color-neon-ice: #69fff1;
   --color-deep-navy: #1a2a4a;
   --color-steel-blue: #2d3f6b;
-  --color-footer-muted: #a0aec0; 
+  --color-footer-muted: #a0aec0;
+  --color-powder-blue: #f0f5ff;
+  --color-seafoam: #e8fdf9;
+  --color-divider: oklch(from #4464ad l c h / 0.15);
 
   /*FONT*/
   --font-playfair: 'Playfair Display', serif;
   --font-montserrat: 'Montserrat', sans-serif;
   --font-cormorant: 'Cormorant Garamond', serif;
 }
-
-
-

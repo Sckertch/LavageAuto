@@ -8,7 +8,7 @@ let isOpen = ref(false)
 </script>
 
 <template>
-  <nav class="bg-smart-blue shadow-2xl px-6 py-3 grid grid-cols-4 items-center">
+  <nav class="fixed top-0 left-0 w-full z-1000 bg-smart-blue shadow-2xl px-6 py-3 grid grid-cols-4 items-center">
     <a href="#">
       <img src="../../assets/picture/logo.jpeg" alt="Logo du site" class="h-full  max-h-8"/>
     </a>

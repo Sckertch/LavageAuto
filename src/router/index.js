@@ -1,6 +1,6 @@
 import HomeView from '@/views/HomeView.vue'
 import ThePrestationView from '@/views/ThePrestationView.vue'
-import TheProductView from '@/views/TheProductView.vue'
+import TheProductView from '@/views/TheProduitView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -18,7 +18,7 @@ const router = createRouter({
     },
     {
       path: '/produits',
-      name: 'TheProductView',
+      name: 'TheProduitView',
       component: TheProductView,
     },
   ],

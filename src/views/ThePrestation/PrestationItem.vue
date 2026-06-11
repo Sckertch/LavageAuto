@@ -1,18 +1,39 @@
 <template>
-  <div class="mx-5 my-10 grid min-w-0 overflow-hidden">
-    <h3 class="text">My product</h3>
+  <article class="mx-5 my-8 grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 items-start
+                  bg-seafoam border border-smart-blue/10 rounded-xl p-5 shadow-sm
+                  hover:shadow-md transition-shadow duration-300">
 
-    <img src="https://picsum.photos/100/100" alt="" class="mt-3" />
+    <!-- Image à gauche -->
+    <img
+      src="https://picsum.photos/100/100"
+      alt=""
+      class="w-24 h-24 rounded-lg object-cover row-span-3 self-start"
+    />
 
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus facere ducimus quibusdam
-      voluptates vitae ipsum tempore, eveniet nostrum velit?
+    <!-- Nom -->
+    <h3 class="font-playfair text-lg font-bold text-smart-blue leading-tight">
+      {{ prestation.nom }}
+    </h3>
+
+    <!-- Caractéristique -->
+    <p class="text-sm text-gray-600 leading-relaxed">
+      {{ prestation.caracteristique }}
     </p>
 
-    <p class="mt-3 text-right">13,50 €</p>
-  </div>
+    <!-- Prix -->
+    <p class="text-base font-semibold text-frozen-water">
+      {{ prestation.prix }} €
+    </p>
+
+  </article>
 </template>
 
-<script setup></script>
+<script setup>
+defineProps({
+  prestation: {
+    type: Object,
+  },
+})
+</script>
 
 <style lang="scss" scoped></style>
