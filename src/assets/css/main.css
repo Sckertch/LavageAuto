@@ -1,11 +1,9 @@
 @import 'tailwindcss';
 
 @theme {
-  /*BREAKPOINT*/
   --breakpoint-xs: 320px;
   --breakpoint-bxsm: 420px;
 
-  /*COULEURS*/
   --color-white: #fff;
   --color-smart-blue: #4464ad;
   --color-frozen-water: #00c8a7;
@@ -17,7 +15,6 @@
   --color-seafoam: #e8fdf9;
   --color-divider: oklch(from #4464ad l c h / 0.15);
 
-  /*FONT*/
   --font-playfair: 'Playfair Display', serif;
   --font-montserrat: 'Montserrat', sans-serif;
   --font-cormorant: 'Cormorant Garamond', serif;
