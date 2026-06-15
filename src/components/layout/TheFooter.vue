@@ -1,9 +1,7 @@
 <template>
   <footer class="bg-deep-navy text-white">
-
     <!-- Section principale -->
     <div class="bg-steel-blue px-6 py-10 grid gap-8 md:grid-cols-4 items-start">
-
       <!-- Réseaux sociaux -->
       <div>
         <h2 class="text-neon-ice text-xs tracking-[0.3em] uppercase font-semibold mb-4">
@@ -40,13 +38,18 @@
 
       <!-- Logo aligné à droite sur les 2 dernières colonnes -->
       <div class="flex justify-end items-start col-span-2">
-        <img src="../../assets/picture/logo.jpeg" alt="Logo du site" class="rounded-md opacity-90 h-full max-h-30" />
+        <img
+          src="../../assets/picture/logo.jpeg"
+          alt="Logo du site"
+          class="rounded-md opacity-90 h-full max-h-30"
+        />
       </div>
-
     </div>
 
     <!-- Séparateur dégradé -->
-    <div class="w-full h-px bg-linear-to-r from-transparent via-neon-ice to-transparent opacity-30"></div>
+    <div
+      class="w-full h-px bg-linear-to-r from-transparent via-neon-ice to-transparent opacity-30"
+    ></div>
 
     <!-- Bande copyright -->
     <div class="px-6 py-4 flex justify-center items-center">
@@ -54,19 +57,18 @@
         &copy; 2026 Lavage auto.fr — Tous droits réservés.
       </span>
     </div>
-
   </footer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const reseaux = [
   { name: 'Instagram', path: '/' },
-  { name: 'Tiktok', path: '/' }
+  { name: 'Tiktok', path: '/' },
 ]
 
 const liensUtiles = [
   { name: 'Nous contacter', path: '/' },
   { name: 'Mentions légales', path: '/' },
-  { name: 'Politiques de confidentialité', path: '/' }
+  { name: 'Politiques de confidentialité', path: '/' },
 ]
 </script>

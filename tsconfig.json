@@ -1,0 +1,17 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["node", "vite/client"],
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "target": "ESNext",
+    "strict": true,
+    "noEmit": true
+  },
+  "include": ["src/**/*", "src/**/*.vue", "vite.config.ts", "env.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}

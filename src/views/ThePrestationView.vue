@@ -61,7 +61,7 @@
   <PrestationItem v-for="(item, i) in prestations" :key="i" :prestation="item" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import PrestationItem from './ThePrestation/PrestationItem.vue'
 
 import { usePrestationStore } from '@/stores/usePrestationStore'
@@ -69,7 +69,6 @@ import { storeToRefs } from 'pinia'
 
 const store = usePrestationStore()
 const { prestations } = storeToRefs(store)
-
 </script>
 
 <style lang="scss" scoped></style>

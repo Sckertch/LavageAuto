@@ -1,6 +1,6 @@
 <template>
   <RouterLink
-    :to="route"
+    :to="route ?? '/'"
     :class="[
       'inline-block px-8 py-3 text-sm tracking-widest uppercase font-semibold rounded-full shadow-lg hover:bg-frozen-water hover:text-white transition-colors duration-300',
       BgColor,
@@ -11,20 +11,19 @@
   </RouterLink>
 </template>
 
-<script setup>
-defineProps({
-  BgColor: {
-    type: String,
-    default: 'bg-smart-blue',
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    BgColor?: string
+    textColor?: string
+    route?: string
+  }>(),
+  {
+    BgColor: 'bg-smart-blue',
+    textColor: 'text-white',
+    route: '/',
   },
-  textColor: {
-    type: String,
-    default: 'text-white',
-  },
-    route: {
-    type: String,
-  },
-})
+)
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

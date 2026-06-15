@@ -1,19 +1,19 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import LinksNav from '../ui/LinksNav.vue';
+import LinksNav from '../ui/LinksNav.vue'
 
 let isOpen = ref(false)
-
-
 </script>
 
 <template>
-  <nav class="fixed top-0 left-0 w-full z-1000 bg-smart-blue shadow-2xl px-6 py-3 grid grid-cols-4 items-center">
+  <nav
+    class="fixed top-0 left-0 w-full z-1000 bg-smart-blue shadow-2xl px-6 py-3 grid grid-cols-4 items-center"
+  >
     <a href="#">
-      <img src="../../assets/picture/logo.jpeg" alt="Logo du site" class="h-full  max-h-8"/>
+      <img src="../../assets/picture/logo.jpeg" alt="Logo du site" class="h-full max-h-8" />
     </a>
-          <button
-      @click="isOpen = !isOpen, console.log(isOpen)"
+    <button
+      @click="((isOpen = !isOpen))"
       class="flex flex-row-reverse col-start-4 md:hidden text-gray-600 focus:outline-none"
       aria-label="Toggle menu"
     >
@@ -49,9 +49,11 @@ let isOpen = ref(false)
       </svg>
     </button>
 
-    <LinksNav v-show="isOpen" class="md:hidden col-span-4 flex flex-col items-center gap-5 text-white"/>
-    <LinksNav class="hidden md:flex col-span-3 justify-end gap-6 list-none text-white"/>
-    
+    <LinksNav
+      v-show="isOpen"
+      class="md:hidden col-span-4 flex flex-col items-center gap-5 text-white"
+    />
+    <LinksNav class="hidden md:flex col-span-3 justify-end gap-6 list-none text-white" />
   </nav>
 </template>
 
