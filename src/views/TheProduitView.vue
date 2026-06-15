@@ -1,9 +1,7 @@
 <template>
   <div class="mt-20 py-5 text-center">
-    <h2 class="text-3xl font-playfair text-smart-blue sm:px-6">
-      Nos produits
-    </h2>
- </div>
+    <h2 class="text-3xl font-playfair text-smart-blue sm:px-6">Nos produits</h2>
+  </div>
 
   <TheCarousel class="mb-8" />
 
@@ -15,7 +13,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import TheCarousel from '@/components/ui/TheCarousel.vue'
 import ProduitItem from './TheProduct/ProduitItem.vue'
 
@@ -24,7 +22,6 @@ import { storeToRefs } from 'pinia'
 
 const store = useProduitStore()
 const { produits } = storeToRefs(store)
-
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import BaseButton from '@/components/ui/BaseButton.vue'
 </script>
 
@@ -61,7 +61,8 @@ import BaseButton from '@/components/ui/BaseButton.vue'
       >
         <BaseButton route="/produits">Nos produits</BaseButton>
         <BaseButton route="/prestations">Nos prestations</BaseButton>
-        <BaseButton class="col-start-auto col-end-auto sm:col-start-1 sm:col-end-3 md:col-start-auto md:col-end-auto"
+        <BaseButton
+          class="col-start-auto col-end-auto sm:col-start-1 sm:col-end-3 md:col-start-auto md:col-end-auto"
           >Faire un devis</BaseButton
         >
       </div>

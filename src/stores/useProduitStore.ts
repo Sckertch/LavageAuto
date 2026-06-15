@@ -1,11 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-
-interface Produit {
-  nom: string
-  caracteristique: string
-  prix: number
-}
+import type { Produit } from '@/Entity/Produit.ts'
 
 export const useProduitStore = defineStore('produit', () => {
   const produits = ref<Produit[]>([
