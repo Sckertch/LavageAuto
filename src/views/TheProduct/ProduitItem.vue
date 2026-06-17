@@ -15,24 +15,35 @@
       >
         {{ produit.prix }} €
       </span>
-
       <h3 class="font-playfair text-base font-bold text-smart-blue leading-snug">
         {{ produit.nom }}
       </h3>
-
       <p class="text-xs text-gray-500 leading-relaxed flex-1">
         {{ produit.caracteristique }}
       </p>
+      <BoutonBase @click="ajouterAuDevis">Ajouter au devis</BoutonBase>
     </div>
   </article>
 </template>
 
 <script setup lang="ts">
 import type { Produit } from '@/Entity/Produit.ts'
+import { usePanierStore } from '@/stores/usePanierStore.ts'
 
-defineProps<{
+const panierStore = usePanierStore()
+
+const props = defineProps<{
   produit: Produit
 }>()
+
+function ajouterAuDevis() {
+  panierStore.ajouterUnItem({
+    id: props.produit.nom,
+    type: 'produit',
+    label: props.produit.nom,   
+    prix: props.produit.prix,
+  })
+}
 </script>
 
 <style lang="scss" scoped></style>

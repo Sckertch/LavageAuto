@@ -1,5 +1,5 @@
 export interface PanierItem {
-  id: number
+  id: string
   type: 'produit' | 'prestation'
   label: string
   prix: number

@@ -1,6 +1,6 @@
 <template>
   <RouterLink
-    :to="route ?? '/'"
+    :to="route ?? '#'"
     :class="[
       'inline-block px-8 py-3 text-sm tracking-widest uppercase font-semibold rounded-full shadow-lg hover:bg-frozen-water hover:text-white transition-colors duration-300',
       BgColor,

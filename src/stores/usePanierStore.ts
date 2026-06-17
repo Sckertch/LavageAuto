@@ -17,8 +17,11 @@ export const usePanierStore = defineStore('Panier', () => {
   }
 
   function ajouterUnItem(item: Omit<PanierItem, 'quantite'>) {
+    console.log(itemsDuPanier.value);
+    console.log(item);
+    
     const estDejaDansLePanier = itemsDuPanier.value.find(
-      (item) => item.id === item.id && item.type == item.type,
+      (i: PanierItem) => i.id === item.id && i.type == item.type,
     )
     if (estDejaDansLePanier) {
       estDejaDansLePanier.quantite++
@@ -29,11 +32,11 @@ export const usePanierStore = defineStore('Panier', () => {
     persist()
   }
 
-  function supprimerUnItem(id: number, type: PanierItem['type']){
+  function supprimerUnItem(id: string, type: PanierItem['type']){
     itemsDuPanier.value = itemsDuPanier.value.filter(item => !(item.id === id && item.type == type))
     persist()
   }
-  function majQuantite(id: number, type: PanierItem['type'], qtt: number) {
+  function majQuantite(id: string, type: PanierItem['type'], qtt: number) {
     const item = itemsDuPanier.value.find(item => item.id === id && item.type === type)
     if (item) {
       item.quantite = qtt;

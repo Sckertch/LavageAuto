@@ -7,23 +7,37 @@
       alt=""
       class="w-24 h-24 rounded-lg object-cover row-span-3 self-start"
     />
-
     <h3 class="font-playfair text-lg font-bold text-smart-blue leading-tight">
       {{ prestation.nom }}
     </h3>
     <p class="text-sm text-gray-600 leading-relaxed">
       {{ prestation.caracteristique }}
     </p>
-    <p class="text-base font-semibold text-frozen-water">{{ prestation.prix }} €</p>
+    <div class="flex items-center justify-between mt-1">
+      <p class="text-base font-semibold text-frozen-water">{{ prestation.prix }} €</p>
+      <BoutonBase @click="ajouterAuDevis">Ajouter au devis</BoutonBase>
+    </div>
   </article>
 </template>
 
 <script setup lang="ts">
 import type { Prestation } from '@/Entity/Prestation.ts'
+import { usePanierStore } from '@/stores/usePanierStore.ts'
 
-defineProps<{
+const panierStore = usePanierStore()
+
+const props = defineProps<{
   prestation: Prestation
 }>()
+
+function ajouterAuDevis() {
+  panierStore.ajouterUnItem({
+    id: props.prestation.nom,
+    type: 'prestation',
+    label: props.prestation.nom,   // "nom" de Prestation → "label" de PanierItem
+    prix: props.prestation.prix,
+  })
+}
 </script>
 
 <style lang="scss" scoped></style>

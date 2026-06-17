@@ -9,10 +9,14 @@
         {{ link.name }}
       </a>
     </li>
+    <BoutonPanier/>
+
   </ul>
 </template>
 
 <script setup lang="ts">
+import BoutonPanier from '../ui/BoutonPanier.vue'
+
 const navLinks = [
   { name: 'Accueil', path: '/' },
   { name: 'Prestations', path: '/prestations' },
