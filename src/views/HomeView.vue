@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseButton from '@/components/ui/BaseButton.vue'
+import BoutonLien from '@/components/ui/BoutonLien.vue'
 </script>
 
 <template>
@@ -59,11 +59,11 @@ import BaseButton from '@/components/ui/BaseButton.vue'
       <div
         class="grid gap-5 flex-wrap items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10"
       >
-        <BaseButton route="/produits">Nos produits</BaseButton>
-        <BaseButton route="/prestations">Nos prestations</BaseButton>
-        <BaseButton
+        <BoutonLien route="/produits">Nos produits</BoutonLien>
+        <BoutonLien route="/prestations">Nos prestations</BoutonLien>
+        <BoutonLien
           class="col-start-auto col-end-auto sm:col-start-1 sm:col-end-3 md:col-start-auto md:col-end-auto"
-          >Faire un devis</BaseButton
+          >Faire un devis</BoutonLien
         >
       </div>
     </div>

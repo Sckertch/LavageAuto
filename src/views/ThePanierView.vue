@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { usePanierStore } from '@/stores/usePanierStore.ts'
-import BaseButton from '@/components/ui/BaseButton.vue'
+import BoutonLien from '@/components/ui/BoutonLien.vue'
+import BoutonBase from '@/components/ui/BoutonBase.vue'
 
 const panier = usePanierStore()
 

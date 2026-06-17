@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import TheCarousel from '@/components/ui/TheCarousel.vue'
+import TheCarousel from '@/components/layout/TheCarousel.vue'
 import ProduitItem from './TheProduct/ProduitItem.vue'
 
 import { useProduitStore } from '@/stores/useProduitStore'

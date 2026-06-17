@@ -4,8 +4,8 @@
   >
     <div class="overflow-hidden">
       <img
-        src="https://picsum.photos/200/150"
-        alt=""
+        :src="produit.image ?? `${IMAGE_FALLBACK}/100/100`"
+        :alt="`${produit.nom}`"
         class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
       />
     </div>
@@ -29,6 +29,8 @@
 <script setup lang="ts">
 import type { Produit } from '@/Entity/Produit.ts'
 import { usePanierStore } from '@/stores/usePanierStore.ts'
+import BoutonBase from '@/components/ui/BoutonBase.vue'
+import { IMAGE_FALLBACK } from '@/utils/environnement.ts'
 
 const panierStore = usePanierStore()
 
@@ -40,7 +42,7 @@ function ajouterAuDevis() {
   panierStore.ajouterUnItem({
     id: props.produit.nom,
     type: 'produit',
-    label: props.produit.nom,   
+    label: props.produit.nom,
     prix: props.produit.prix,
   })
 }
