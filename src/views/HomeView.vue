@@ -57,14 +57,10 @@ import BoutonLien from '@/components/ui/BoutonLien.vue'
         soin des cuirs et lustrage de carrosserie.
       </h3>
       <div
-        class="grid gap-5 flex-wrap items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10"
+        class="grid gap-5 flex-wrap items-center grid-cols-1 sm:grid-cols-2 mt-10"
       >
         <BoutonLien route="/produits">Nos produits</BoutonLien>
         <BoutonLien route="/prestations">Nos prestations</BoutonLien>
-        <BoutonLien
-          class="col-start-auto col-end-auto sm:col-start-1 sm:col-end-3 md:col-start-auto md:col-end-auto"
-          >Faire un devis</BoutonLien
-        >
       </div>
     </div>
 

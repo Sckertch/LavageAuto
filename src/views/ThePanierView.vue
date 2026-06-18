@@ -20,8 +20,9 @@ function requestDevis() {
     <div v-if="!panier.itemsDuPanier.length" class="text-center py-16 text-gray-400">
       <p class="text-5xl mb-4">🛒</p>
       <p class="text-lg font-light tracking-wide">Votre panier est vide.</p>
-      <div class="mt-6">
+      <div class="mt-6 grid md:grid-cols-2 gap-4">
         <BoutonLien route="/prestations">Voir nos prestations</BoutonLien>
+        <BoutonLien route="/produits">Voir nos produits</BoutonLien>
       </div>
     </div>
 
