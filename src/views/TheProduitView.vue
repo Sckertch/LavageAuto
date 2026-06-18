@@ -19,9 +19,15 @@ import ProduitItem from './TheProduct/ProduitItem.vue'
 
 import { useProduitStore } from '@/stores/useProduitStore'
 import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
 
 const store = useProduitStore()
 const { produits } = storeToRefs(store)
+
+onMounted(() => {
+  store.fetchProduits()
+ })
+
 </script>
 
 <style lang="scss" scoped></style>

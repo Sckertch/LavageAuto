@@ -1,35 +1,26 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Produit } from '@/Entity/Produit.ts'
+import { getProduits } from '@/service/produitService.ts'
 
 export const useProduitStore = defineStore('produit', () => {
-  const produits = ref<Produit[]>([
-    {
-      nom: 'Produit 1',
-      caracteristique: 'Léger, résistant, idéal pour un usage quotidien',
-      prix: 29.99,
-    },
-    { nom: 'Produit 2', caracteristique: 'Haute performance, batterie longue durée', prix: 49.99 },
-    { nom: 'Produit 3', caracteristique: 'Design compact, matériaux premium', prix: 79.99 },
-    { nom: 'Produit 4', caracteristique: 'Multifonction, compatible tous appareils', prix: 19.99 },
-    { nom: 'Produit 5', caracteristique: 'Édition limitée, coloris exclusif', prix: 99.99 },
-  ])
+  const produits = ref<Produit[]>([])
 
   const loading = ref<boolean>(false)
   const error = ref<string | null>(null)
 
-  // Plus tard : remplace le mock par ça
-  // async function fetchProduits() {
-  //   loading.value = true
-  //   try {
-  //     const res = await fetch('/api/produits')
-  //     produits.value = await res.json()
-  //   } catch (e) {
-  //     error.value = e
-  //   } finally {
-  //     loading.value = false
-  //   }
-  // }
+  const fetchProduits = async () => {
+    loading.value = true
+    error.value = null
 
-  return { produits, loading, error }
+    try {
+      produits.value = await getProduits()
+    } catch (err) {
+      error.value = 'Erreur lors de la récupération des produits'
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return { produits, loading, error, fetchProduits }
 })
