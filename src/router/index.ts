@@ -1,14 +1,28 @@
 import HomeView from '@/views/HomeView.vue'
 import ThePrestationView from '@/views/ThePrestationView.vue'
-import TheProductView from '@/views/TheProduitView.vue'
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import ThePanierView from '@/views/ThePanierView.vue'
+import TheProductView from '@/views/TheProduitView.vue'
+import AdminLoginView from '@/views/AdminLoginView.vue'
+import AdminDashboardView from '@/views/AdminDashboardView.vue'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { useAuthStore } from '@/stores/useAuthStore.ts'
 
 const routes: RouteRecordRaw[] = [
   { path: '/', name: 'HomeView', component: HomeView },
   { path: '/prestations', name: 'ThePrestationView', component: ThePrestationView },
   { path: '/produits', name: 'TheProduitView', component: TheProductView },
-  {path: '/panier', name: 'ThePanierView', component: ThePanierView },
+  { path: '/panier', name: 'ThePanierView', component: ThePanierView },
+  {
+    path: '/admin',
+    name: 'admin-login',
+    component: AdminLoginView,
+  },
+  {
+    path: '/admin/dashboard',
+    name: 'admin-dashboard',
+    component: AdminDashboardView,
+    meta: { requiresAuth: true }, // marque la route comme protégée
+  },
 ]
 
 const router = createRouter({
@@ -20,5 +34,18 @@ const router = createRouter({
     }
     return { top: 0 }
   },
+})
+
+// vérifie le token avant chaque navigation
+router.beforeEach((to) => {
+  const authStore = useAuthStore()
+
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    return { name: 'admin-login' }   // redirige vers login si pas connecté
+  }
+
+  if (to.name === 'admin-login' && authStore.isAuthenticated) {
+    return { name: 'admin-dashboard' }  // redirige vers dashboard si déjà connecté
+  }
 })
 export default router
