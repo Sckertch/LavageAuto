@@ -6,6 +6,8 @@ import AdminLoginView from '@/views/AdminLoginView.vue'
 import AdminDashboardView from '@/views/AdminDashboardView.vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import { useAuthStore } from '@/stores/useAuthStore.ts'
+import AdminPrestationListView from '@/views/AdminPrestationListView.vue'
+import AdminProduitListView from '@/views/AdminProduitListView.vue'
 
 const routes: RouteRecordRaw[] = [
   { path: '/', name: 'HomeView', component: HomeView },
@@ -21,7 +23,19 @@ const routes: RouteRecordRaw[] = [
     path: '/admin/dashboard',
     name: 'admin-dashboard',
     component: AdminDashboardView,
-    meta: { requiresAuth: true }, // marque la route comme protégée
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/admin/prestations',
+    name: 'admin-prestations',
+    component: AdminPrestationListView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/admin/produits',
+    name: 'admin-produits',
+    component: AdminProduitListView,
+    meta: { requiresAuth: true },
   },
 ]
 
