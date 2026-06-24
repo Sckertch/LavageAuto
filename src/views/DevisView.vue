@@ -1,10 +1,17 @@
-<!-- src/views/DevisView.vue -->
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePanierStore } from '@/stores/usePanierStore'
 import { createDevis } from '@/service/devisService'
 import type { DevisPayload } from '@/Entity/Devis'
+
+interface FormDevis {
+  client_nom: string
+  client_email: string
+  client_telephone: string
+}
+
+type FormErrors = Partial<Record<keyof FormDevis, string>>
 
 const router = useRouter()
 const panierStore = usePanierStore()
@@ -14,25 +21,73 @@ const error = ref<string | null>(null)
 const succes = ref<boolean>(false)
 const devisId = ref<number | null>(null)
 
-const form = reactive({
+const form = reactive<FormDevis>({
   client_nom: '',
   client_email: '',
   client_telephone: '',
 })
 
-// Le panier est vide → on redirige
+const errors = reactive<FormErrors>({})
+
 const panierVide = computed(() => panierStore.itemsDuPanier.length === 0)
 
-async function handleSubmit(): Promise<void> {
-  if (panierVide.value) return
+function resetErrors(): void {
+  Object.keys(errors).forEach((key) => {
+    delete errors[key as keyof FormErrors]
+  })
+}
 
-  loading.value = true
+function nettoyerTelephone(telephone: string): string {
+  return telephone.replace(/\s+/g, '')
+}
+
+function validerFormulaire(): boolean {
+  resetErrors()
+  let valide = true
+
+  const nom = form.client_nom.trim()
+  const email = form.client_email.trim()
+  const telephone = nettoyerTelephone(form.client_telephone.trim())
+
+  if (!nom) {
+    errors.client_nom = 'Le nom complet est obligatoire.'
+    valide = false
+  } else if (nom.length > 100) {
+    errors.client_nom = 'Le nom ne peut pas dépasser 100 caractères.'
+    valide = false
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!email) {
+    errors.client_email = "L'adresse e-mail est obligatoire."
+    valide = false
+  } else if (!emailRegex.test(email)) {
+    errors.client_email = "L'adresse e-mail est invalide."
+    valide = false
+  }
+
+  const telRegex = /^(\+33|0)[1-9](\d{2}){4}$/
+  if (telephone && !telRegex.test(telephone)) {
+    errors.client_telephone = 'Le numéro de téléphone est invalide.'
+    valide = false
+  }
+
+  return valide
+}
+
+async function handleSubmit(): Promise<void> {
+  if (panierVide.value || loading.value) return
+
   error.value = null
 
+  if (!validerFormulaire()) return
+
+  loading.value = true
+
   const payload: DevisPayload = {
-    client_nom: form.client_nom,
-    client_email: form.client_email,
-    client_telephone: form.client_telephone || undefined,
+    client_nom: form.client_nom.trim(),
+    client_email: form.client_email.trim(),
+    client_telephone: form.client_telephone.trim() || undefined,
     lignes: panierStore.itemsDuPanier.map((item) => ({
       type: item.type,
       id: Number(item.id),
@@ -45,6 +100,7 @@ async function handleSubmit(): Promise<void> {
     devisId.value = response.devis_id
     succes.value = true
     panierStore.viderPanier()
+    resetErrors()
   } catch {
     error.value = 'Une erreur est survenue lors de la génération du devis. Veuillez réessayer.'
   } finally {
@@ -52,7 +108,6 @@ async function handleSubmit(): Promise<void> {
   }
 }
 </script>
-
 <template>
   <div class="min-h-screen bg-gray-50 py-12 px-4">
     <div class="max-w-3xl mx-auto">
