@@ -31,8 +31,10 @@ import type { Produit } from '@/Entity/Produit.ts'
 import { usePanierStore } from '@/stores/usePanierStore.ts'
 import BoutonBase from '@/components/ui/BoutonBase.vue'
 import { IMAGE_FALLBACK } from '@/utils/environnement.ts'
+import { useToast } from 'vue-toastification'
 
 const panierStore = usePanierStore()
+const toast = useToast()
 
 const props = defineProps<{
   produit: Produit
@@ -45,6 +47,7 @@ function ajouterAuDevis() {
     nom: props.produit.nom,
     prix: props.produit.prix,
   })
+  toast.success(`🛒 "${props.produit.nom}" ajouté au devis !`)
 }
 </script>
 

@@ -25,8 +25,10 @@ import type { Prestation } from '@/Entity/Prestation.ts'
 import { usePanierStore } from '@/stores/usePanierStore.ts'
 import BoutonBase from '@/components/ui/BoutonBase.vue'
 import { IMAGE_FALLBACK } from '@/utils/environnement.ts'
+import { useToast } from 'vue-toastification'
 
 const panierStore = usePanierStore()
+const toast = useToast()
 
 const props = defineProps<{
   prestation: Prestation
@@ -39,6 +41,7 @@ function ajouterAuDevis() {
     nom: props.prestation.nom, // "nom" de Prestation → "label" de PanierItem
     prix: props.prestation.prix,
   })
+  toast.success(`🛒 "${props.prestation.nom}" ajouté au devis !`)
 }
 </script>
 
