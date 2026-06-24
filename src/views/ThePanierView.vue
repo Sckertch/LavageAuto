@@ -5,10 +5,6 @@ import BoutonBase from '@/components/ui/BoutonBase.vue'
 
 const panier = usePanierStore()
 
-function requestDevis() {
-  // TODO: POST /api/devis avec panier.itemsDuPanier → API Laravel
-  console.log('Payload futur:', panier.itemsDuPanier)
-}
 </script>
 
 <template>
@@ -40,7 +36,7 @@ function requestDevis() {
           >
             {{ item.type }}
           </span>
-          <p class="font-playfair text-base font-bold text-smart-blue">{{ item.label }}</p>
+          <p class="font-playfair text-base font-bold text-smart-blue">{{ item.nom }}</p>
           <p class="text-sm text-gray-500 mt-1">
             {{ item.prix }} € × {{ item.quantite }}
             <span class="font-semibold text-smart-blue ml-2">
@@ -65,9 +61,9 @@ function requestDevis() {
       </p>
       <div class="flex gap-3 flex-wrap justify-center">
         <BoutonBase variante="outline" @click="panier.viderPanier()">Vider le panier</BoutonBase>
-        <BoutonBase :disabled="!panier.itemsDuPanier.length" @click="requestDevis">
+        <BoutonLien :disabled="!panier.itemsDuPanier.length" route="/devis">
           Demander un devis
-        </BoutonBase>
+        </BoutonLien>
       </div>
     </div>
   </div>

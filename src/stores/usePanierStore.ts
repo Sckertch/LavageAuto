@@ -7,8 +7,12 @@ const STORAGE_KEY = 'panier'
 export const usePanierStore = defineStore('Panier', () => {
   // Hydratation depuis localStorage sinon vide
   const itemsDuPanier = ref<PanierItem[]>(
-    JSON.parse(
-      localStorage.getItem(STORAGE_KEY) ?? '[]')
+    (JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]') as PanierItem[]).map((item) => ({
+      ...item,
+      id: String(item.id),
+      prix: Number(item.prix),
+      quantite: Number(item.quantite),
+    }))
   )
 
   //Persister les données dans le localstorage
@@ -17,17 +21,23 @@ export const usePanierStore = defineStore('Panier', () => {
   }
 
   function ajouterUnItem(item: Omit<PanierItem, 'quantite'>) {
-    console.log(itemsDuPanier.value);
-    console.log(item);
-    
+    console.log(item)
+
+    const itemNormalise: Omit<PanierItem, 'quantite'> = {
+      ...item,
+        id: String(item.id),
+        nom: item.nom,
+        prix: Number(item.prix),
+    }
+
     const estDejaDansLePanier = itemsDuPanier.value.find(
-      (i: PanierItem) => i.id === item.id && i.type == item.type,
+      (i: PanierItem) => i.id === itemNormalise.id && i.type === itemNormalise.type,
     )
+
     if (estDejaDansLePanier) {
       estDejaDansLePanier.quantite++
     } else {
-      //Initialise la quantité à 1
-      itemsDuPanier.value.push({ ...item, quantite: 1 })
+      itemsDuPanier.value.push({ ...itemNormalise, quantite: 1 })
     }
     persist()
   }

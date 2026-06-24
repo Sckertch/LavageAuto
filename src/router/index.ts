@@ -8,6 +8,8 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import { useAuthStore } from '@/stores/useAuthStore.ts'
 import AdminPrestationListView from '@/views/AdminPrestationListView.vue'
 import AdminProduitListView from '@/views/AdminProduitListView.vue'
+import DevisView from '@/views/DevisView.vue'
+import AdminDevisListView from '@/views/AdminDevisListView.vue'
 
 const routes: RouteRecordRaw[] = [
   { path: '/', name: 'HomeView', component: HomeView },
@@ -35,6 +37,13 @@ const routes: RouteRecordRaw[] = [
     path: '/admin/produits',
     name: 'admin-produits',
     component: AdminProduitListView,
+    meta: { requiresAuth: true },
+  },
+  { path: '/devis', name: 'DevisView', component: DevisView },
+  {
+    path: '/admin/devis',
+    name: 'admin-devis',
+    component: AdminDevisListView,
     meta: { requiresAuth: true },
   },
 ]

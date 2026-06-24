@@ -3,3 +3,8 @@ export interface Admin {
   name: string
   email: string
 }
+
+export interface AuthResponse {
+  access_token: string;
+  user: Admin
+}

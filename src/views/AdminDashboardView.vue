@@ -57,6 +57,18 @@ async function handleLogout(): Promise<void> {
           </div>
           <span class="mt-auto text-blue-600 text-sm font-medium">Accéder →</span>
         </button>
+
+        <button
+          @click="router.push('/admin/devis')"
+          class="flex flex-col items-start gap-3 bg-white border border-gray-200 rounded-xl p-8 shadow-sm hover:shadow-md hover:border-blue-400 transition-all text-left"
+        >
+          <div class="text-4xl">📄</div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800">Devis</h3>
+            <p class="text-gray-500 mt-1 text-sm">Consulter et gérer les devis clients</p>
+          </div>
+          <span class="mt-auto text-blue-600 text-sm font-medium">Accéder →</span>
+        </button>
       </div>
     </div>
   </div>

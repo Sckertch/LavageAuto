@@ -34,9 +34,9 @@ const props = defineProps<{
 
 function ajouterAuDevis() {
   panierStore.ajouterUnItem({
-    id: props.prestation.nom,
+    id: String(props.prestation.id),
     type: 'prestation',
-    label: props.prestation.nom, // "nom" de Prestation → "label" de PanierItem
+    nom: props.prestation.nom, // "nom" de Prestation → "label" de PanierItem
     prix: props.prestation.prix,
   })
 }

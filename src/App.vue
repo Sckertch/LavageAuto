@@ -6,7 +6,7 @@ import TheNavBar from './components/layout/TheNavBar.vue'
 <template>
   <TheNavBar />
 
-  <section>
+  <section class="mt-10">
     <router-view />
   </section>
   
