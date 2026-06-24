@@ -40,5 +40,5 @@ __screenshots__/
 
 # Local env files
 *.env
-/.env.development
+/.env
 /.env.prod
