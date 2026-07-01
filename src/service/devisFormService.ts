@@ -21,6 +21,7 @@ export function useDevisForm() {
   const error = ref<string | null>(null)
   const succes = ref<boolean>(false)
   const devisId = ref<number | null>(null)
+  const pdfExpire = ref<boolean>(false)
 
   const form = reactive<FormDevis>({
     client_nom: '',
@@ -90,10 +91,35 @@ export function useDevisForm() {
     return valide
   }
 
+  async function ouvrirPdf(id: number): Promise<void> {
+    pdfExpire.value = false
+    const pdfUrl = `${import.meta.env.VITE_API_URL}/devis/${id}/pdf`
+
+    try {
+      const check = await fetch(pdfUrl, { method: 'HEAD' })
+
+      if (check.status === 410) {
+        pdfExpire.value = true
+        error.value = 'Le lien PDF a expiré (5 minutes). Veuillez générer un nouveau devis.'
+        return
+      }
+
+      if (!check.ok) {
+        error.value = 'Impossible de récupérer le PDF. Veuillez réessayer.'
+        return
+      }
+
+      window.open(pdfUrl, '_blank')
+    } catch {
+      error.value = "Une erreur réseau est survenue lors de l'ouverture du PDF."
+    }
+  }
+
   async function handleSubmit(): Promise<void> {
     if (panierVide.value || loading.value) return
 
     error.value = null
+    pdfExpire.value = false
 
     if (!validerFormulaire()) return
 
@@ -116,6 +142,7 @@ export function useDevisForm() {
       succes.value = true
       panierStore.viderPanier()
       resetErrors()
+      await ouvrirPdf(response.devis_id)
     } catch (err: unknown) {
       if (axios.isAxiosError(err) && err.response?.status === 422) {
         const backErrors = err.response.data?.errors as Record<string, string[]>
@@ -145,7 +172,6 @@ export function useDevisForm() {
     }
   }
 
-  // On expose uniquement ce dont le template a besoin
   return {
     form,
     errors,
@@ -157,5 +183,7 @@ export function useDevisForm() {
     panierStore,
     handleSubmit,
     router,
+    pdfExpire,
+    ouvrirPdf,
   }
 }

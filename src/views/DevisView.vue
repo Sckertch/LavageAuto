@@ -12,6 +12,8 @@ const {
   panierStore,
   handleSubmit,
   router,
+  pdfExpire,
+  ouvrirPdf,
 } = useDevisForm()
 </script>
 <template>
@@ -27,9 +29,18 @@ const {
         <p class="text-gray-500 mb-2">
           Votre devis n°<strong>{{ String(devisId).padStart(5, '0') }}</strong> a bien été créé.
         </p>
-        <p class="text-gray-500 mb-8">
-          Vous allez recevoir votre devis par e-mail à l'adresse indiquée.
+
+        <!-- Message si le PDF s'est bien ouvert -->
+        <p v-if="!pdfExpire" class="text-green-600 text-sm mb-8">
+          📄 Votre PDF s'est ouvert dans un nouvel onglet.
         </p>
+
+        <!-- Fallback si popup bloqué ou erreur PDF -->
+        <p v-else class="text-amber-600 text-sm mb-8">
+          ⚠️ Votre devis a bien été créé mais le PDF n'a pas pu s'ouvrir automatiquement.<br />
+          Vous le recevrez par e-mail à l'adresse indiquée.
+        </p>
+
         <div class="flex justify-center gap-4">
           <button
             @click="router.push('/')"
