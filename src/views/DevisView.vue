@@ -57,7 +57,7 @@ function validerFormulaire(): boolean {
     valide = false
   }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/
   if (!email) {
     errors.client_email = "L'adresse e-mail est obligatoire."
     valide = false
@@ -70,6 +70,20 @@ function validerFormulaire(): boolean {
   if (telephone && !telRegex.test(telephone)) {
     errors.client_telephone = 'Le numéro de téléphone est invalide.'
     valide = false
+  }
+
+  if (panierStore.itemsDuPanier.length === 0) {
+    error.value = 'Votre panier est vide.'
+    valide = false
+  }
+
+  for (const item of panierStore.itemsDuPanier) {
+    const q = Number(item.quantite)
+    if (!Number.isInteger(q) || q < 1 || q > 100) {
+      error.value = `Quantité invalide pour "${item.nom}".`
+      valide = false
+      break
+    }
   }
 
   return valide
@@ -235,10 +249,19 @@ async function handleSubmit(): Promise<void> {
                 <input
                   v-model="form.client_nom"
                   type="text"
+                  maxlength="60"
                   required
                   placeholder="Jean Dupont"
-                  class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  :class="[
+                    'w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2',
+                    errors.client_nom
+                      ? 'border-red-400 focus:ring-red-300'
+                      : 'border-gray-300 focus:ring-blue-400',
+                  ]"
                 />
+                <p v-if="errors.client_nom" class="text-red-500 text-xs mt-1">
+                  {{ errors.client_nom }}
+                </p>
               </div>
 
               <div>
@@ -248,10 +271,19 @@ async function handleSubmit(): Promise<void> {
                 <input
                   v-model="form.client_email"
                   type="email"
+                  maxlength="255"
                   required
                   placeholder="jean@exemple.fr"
-                  class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  :class="[
+                    'w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2',
+                    errors.client_email
+                      ? 'border-red-400 focus:ring-red-300'
+                      : 'border-gray-300 focus:ring-blue-400',
+                  ]"
                 />
+                <p v-if="errors.client_email" class="text-red-500 text-xs mt-1">
+                  {{ errors.client_email }}
+                </p>
               </div>
 
               <div>
@@ -261,9 +293,18 @@ async function handleSubmit(): Promise<void> {
                 <input
                   v-model="form.client_telephone"
                   type="tel"
+                  maxlength="17"
                   placeholder="06 12 34 56 78"
-                  class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  :class="[
+                    'w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2',
+                    errors.client_telephone
+                      ? 'border-red-400 focus:ring-red-300'
+                      : 'border-gray-300 focus:ring-blue-400',
+                  ]"
                 />
+                <p v-if="errors.client_telephone" class="text-red-500 text-xs mt-1">
+                  {{ errors.client_telephone }}
+                </p>
               </div>
             </div>
           </div>
