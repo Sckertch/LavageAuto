@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TheFooter from './components/layout/TheFooter.vue'
 import TheNavBar from './components/layout/TheNavBar.vue'
+import DropZone from '@/components/ui/DropZone.vue'
 </script>
 
 <template>
@@ -9,7 +10,8 @@ import TheNavBar from './components/layout/TheNavBar.vue'
   <section class="mt-10">
     <router-view />
   </section>
-  
+
+  <DropZone />
 
   <TheFooter />
 </template>

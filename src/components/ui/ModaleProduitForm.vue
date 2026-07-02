@@ -2,6 +2,7 @@
 import { ref, reactive, watch, computed } from 'vue'
 import { useProduitStore } from '@/stores/useProduitStore'
 import type { Produit } from '@/Entity/Produit'
+import { CDN_URL } from '@/utils/environnement.ts'
 
 const props = defineProps<{
   visible: boolean
@@ -136,7 +137,7 @@ async function handleSupprimer(): Promise<void> {
             />
             <img
               v-if="form.image"
-              :src="form.image"
+              :src="`${CDN_URL}/${form.image}`"
               alt="Aperçu"
               class="mt-2 w-full h-32 object-cover rounded-lg border border-gray-200"
             />

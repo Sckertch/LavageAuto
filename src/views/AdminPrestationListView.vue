@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { usePrestationStore } from '@/stores/usePrestationStore'
 import type { Prestation } from '@/Entity/Prestation'
 import ModalePrestationForm from '@/components/ui/ModalePrestationForm.vue'
+import { CDN_URL, IMAGE_FALLBACK } from '@/utils/environnement.ts'
 
 const router = useRouter()
 const prestationStore = usePrestationStore()
@@ -78,7 +79,11 @@ onMounted(async () => {
               <td class="px-4 py-3">
                 <img
                   v-if="prestation.image"
-                  :src="prestation.image"
+                  :src="
+                    prestation.image
+                      ? `${CDN_URL}/${prestation.image}`
+                      : `${IMAGE_FALLBACK}/100/100`
+                  "
                   :alt="prestation.nom"
                   class="w-12 h-12 object-cover rounded-lg border border-gray-200"
                 />

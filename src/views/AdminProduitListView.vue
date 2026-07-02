@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useProduitStore } from '@/stores/useProduitStore'
 import type { Produit } from '@/Entity/Produit'
 import ModaleProduitForm from '@/components/ui/ModaleProduitForm.vue'
+import { CDN_URL, IMAGE_FALLBACK } from '@/utils/environnement.ts'
 
 const router = useRouter()
 const produitStore = useProduitStore()
@@ -78,7 +79,7 @@ onMounted(async () => {
               <td class="px-4 py-3">
                 <img
                   v-if="produit.image"
-                  :src="produit.image"
+                  :src="produit.image ? `${CDN_URL}/${produit.image}` : `${IMAGE_FALLBACK}/100/100`"
                   :alt="produit.nom"
                   class="w-12 h-12 object-cover rounded-lg border border-gray-200"
                 />
